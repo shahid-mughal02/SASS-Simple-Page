@@ -1,0 +1,45 @@
+.footer_content{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 25px 0;
+    border-top: 5px solid $primary;
+    .footer_logo{
+        width: 20%;
+        padding-right: 30px;
+        border-right: 1px solid $bg;
+    }
+    .copyright{
+        width: 30%;
+        padding-left: 30px;
+        font-size: 14px;
+        font-weight: 100;
+        color: $text;
+    }
+    .footer_social{
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        column-gap: 20px;
+        ul{
+            display: flex;
+            column-gap: 10px;
+        }
+        svg{
+            $text: #65696e;
+            fill: $text;
+        }
+        .footer_mail{
+            background-color: $bg;
+            padding: 2px 5px;
+            display: flex;
+            align-items: center;
+            column-gap: 8px;
+            span{
+            font-size: 12px;
+            color: #65696e;
+            }
+        }
+    }
+}

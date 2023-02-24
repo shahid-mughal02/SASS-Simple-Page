@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans', sans-serif;
+}
+@import 'variable';
+.page_width{
+    max-width: $pageWidth;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+p{
+    font-size: 18px;
+}
+ul{
+    padding-left: 0;
+    list-style: none;
+}
+a{
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+img{
+    max-width: 100%;
+    display: block;
+}
+input,textarea,button{
+    width: 100%;
+    outline: none;
+    background-color: transparent;
+}
+@import 'header';
+.cs_title{
+    font-size: 1.9rem;
+    margin: 20px 0;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+@mixin title($color) {
+    color: $color;
+}
+.banner_content{
+    display: flex;
+    padding: 50px 0;
+    .banner_detail{
+        position: relative;
+        width: 40%;
+        &:before{
+            content: url('dots.svg');
+            display: block;
+            width: 100px;
+            position: absolute;
+            z-index: 1;
+            left: 10%;
+        }
+        @at-root .as_nav_box{
+            background-color: $bg;
+            width: 600px;
+            position: relative;
+            z-index: 2;
+            top: 50%;
+            transform: translateY(-50%);
+            .slick-arrow{
+                background-color: $mainText;
+                height: 50px;
+                width: 50px;
+                transition: background-color .3s;
+                &:before{
+                    display: none;
+                }
+            }
+            .slick-prev{
+                top: 100%;
+                left: 50px;
+            }
+            .slick-next{
+                top: 100%;
+                right: unset;
+                left: 100px;
+            }
+            .active_arrow{
+                $text: #4b4b4b;
+                background-color: $text;
+            }
+            .nav_slide{
+                @if $pageWidth == 1200px {
+                    padding: 70px;
+                }@else{
+                    padding: 50px;
+                }
+                &:nth-child(1) h2{
+                    &:before{
+                        content: map-get($slide-badges , badge1);
+                    }
+                }
+                &:nth-child(2) h2{
+                    &:before{
+                        content: map-get($slide-badges , badge2);
+                    }
+                }
+                &:nth-child(3) h2{
+                    &:before{
+                        content: map-get($slide-badges , badge3);
+                    }
+                }
+            }
+            h2{
+                @include title($color: $primary);
+                @extend .cs_title;
+                &:before{
+                    background-color: $primary;
+                    color: $white;
+                    display: inline-block;
+                    padding: 2px 10px;
+                    font-size: 12px;
+                }
+                span{
+                    display: block;
+                }
+            }
+            p{
+                color: $text;
+            }
+        }
+    }
+    .banner_img{
+        width: 60%;
+        position: relative;
+        &:before{
+            content: url('dots.svg');
+            display: block;
+            width: 100px;
+            position: absolute;
+            z-index: 0;
+            right: 10%;
+            bottom: -50px;
+        }
+
+    }
+}
+.helps_container{
+    padding: 30px 0;
+    @at-root .help_header{
+        max-width: 500px;
+        h2{
+            @include title($color: $mainText);
+            @extend .cs_title;
+        }
+        p{
+            color: $text;
+        }
+        .help_grid{
+            padding-top: 30px;
+        }
+    }
+}
+.help_grid{
+    display: grid;
+    grid-template-columns: 50% repeat(2,1fr);
+    grid-template-rows: repeat(2,140px);
+    gap: 15px;
+    margin-top: 20px;
+    .help_slider{
+        margin-bottom: 0;
+        height: 100%;
+    }
+    @at-root .help_item_slider{
+        grid-row-end: span 2;
+        .help_slide{
+            padding: 30px;
+            height: 100%;
+            &:nth-child(1){
+                background: $bg url('slide-2.png') right bottom no-repeat;
+            }
+            &:nth-child(2){
+                background: $bg url('slide-1.png') right bottom no-repeat;
+            }
+        }
+        .slick-list,.slick-track{
+            height: 100%;
+        }
+        .slick-dots{
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 30px;
+            bottom: 10px;
+            li button:before{
+                font-size: 12px;
+                color: $white;
+                opacity: 1;
+            }
+            .slick-active button:before{
+                color: $primary;
+            }
+        }
+        @at-root .help_slide_content{
+            height: 100%;
+            .desc{
+                max-width: 66%;
+                font-size: 16px;
+                color: $text;
+                border-left: 3px solid $primary;
+                padding-left: 20px;
+            }
+            .info{
+                display: flex;
+                align-items: center;
+                column-gap: 10px;
+                margin-top: 50px;
+                h3{
+                    color: $mainText;
+                    font-weight: 600;
+                    font-size: 18px;
+                    margin-bottom: 10px;
+                }
+                p{
+                    color: $text;
+                    font-size: 14px;
+                }
+                .icon{
+                    width: 60px;
+                }
+                .info_detail{
+                    width: calc(100%  - 70px);
+                }
+            }
+        }
+    }
+    .help_item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        $bg: #F8F8F8;
+        background-color: $bg;
+    }
+}
+.featured_post_container{
+    padding: 40px 0;
+    @at-root .featured_post_grid{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        text-align: center;
+        .featured_post{
+            &:first-child{
+                padding-right: 40px;
+            }
+            &:last-child{
+                padding-right: 0px !important;
+            }
+        }
+        .featured_post + .featured_post{
+            padding: 0 40px;
+            border-left: 1px solid $bg;
+        }
+        .featured_img{
+            margin-bottom: 50px;
+            position: relative;
+            &:before{
+                content: url('dots.svg');
+                display: block;
+                width: 100px;
+                position: absolute;
+                bottom: -30px;
+                right: 25%;
+            }
+            img{
+                margin: 0 auto;
+                background-color: $white;
+                position: relative;
+                z-index: 1;
+            }
+        }
+        @at-root .featured_post_detail{
+            h3{
+                font-weight: 100;
+                font-size: 25px;
+            }
+            p{
+                margin-top: 10px;
+                color: $text;
+            }
+            .featured_btn{
+                display: inline-block;
+                margin: 0 auto;
+                margin-top: 30px;
+                &:hover{
+                    svg{
+                        $primary: #e2910d;
+                        fill: $primary;
+                        text-decoration: underline;
+                    }
+                    a{
+                        $primary: #e2910d;
+                        color: $primary;
+                        text-decoration: underline;
+                    }
+                }
+                a{
+                    color: $primary;
+                    transition: .3s;
+                    font-size: 14px;
+                    display: flex;
+                    column-gap: 5px;
+                    align-items: center;
+                }
+                svg{
+                    fill: $primary;
+                    transition: .3s;
+                    width: 10px;
+                }
+            }
+        }
+    }
+
+}
+@import 'footer';
